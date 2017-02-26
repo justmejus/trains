@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Created by marimpietri on 25/02/17.
+ * Created on 25/02/17.
  */
 public class CitiesAnalyzer {
 
@@ -20,8 +20,7 @@ public class CitiesAnalyzer {
                 .map(route->new Tuple(route.charAt(0),route.charAt(1),Character.getNumericValue(route.charAt(2))))
                 .collect(Collectors.groupingBy(Tuple::getA));
 
-System.out.println(map);
-        System.out.println(totalDistance);
+
 
 
     }

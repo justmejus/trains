@@ -1,17 +1,12 @@
 package mygroup;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 /**
- * Hello world!
+ * Trains App
  *
  */
 public class App 
@@ -20,41 +15,34 @@ public class App
 
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
         String fileName = args[0];
-        File f=new File(".");
-        System.out.println(f.getAbsolutePath());
 
-
-
-        //read file into stream, try-with-resources
+        //read file into stream
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 
+            //Load graph in memory data structure
             stream.forEach(line->{
-                System.out.println(line);
                 CitiesAnalyzer.analyze(line);
             });
 
 
-            System.out.println(CitiesAnalyzer.pathDistance("ABC")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("ABC"));
-            System.out.println(CitiesAnalyzer.pathDistance("AD")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("AD"));
-            System.out.println(CitiesAnalyzer.pathDistance("ADC")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("ADC"));
-            System.out.println(CitiesAnalyzer.pathDistance("AEBCD")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("AEBCD"));
-            System.out.println(CitiesAnalyzer.pathDistance("AED")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("AED"));
-            System.out.println(CitiesAnalyzer.path("C",5,'C'));
-            System.out.println(CitiesAnalyzer.pathExact("A",5,'C'));
-            System.out.println(CitiesAnalyzer.pathShortest("A",'C'));
-            System.out.println(CitiesAnalyzer.pathShortest("B",'B'));
-            System.out.println(CitiesAnalyzer.pathWithBoundedDistance("C",30,'C'));
+            System.out.println("Output #1: "+(CitiesAnalyzer.pathDistance("ABC")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("ABC")));
+            System.out.println("Output #2: "+(CitiesAnalyzer.pathDistance("AD")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("AD")));
+            System.out.println("Output #3: "+(CitiesAnalyzer.pathDistance("ADC")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("ADC")));
+            System.out.println("Output #4: "+(CitiesAnalyzer.pathDistance("AEBCD")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("AEBCD")));
+            System.out.println("Output #5: "+(CitiesAnalyzer.pathDistance("AED")==null?"NO SUCH ROUTE":CitiesAnalyzer.pathDistance("AED")));
+            System.out.println("Output #6: "+CitiesAnalyzer.path("C",5,'C').size());
+            System.out.println("Output #7: "+CitiesAnalyzer.pathExact("A",5,'C').size());
+            System.out.println("Output #8: "+CitiesAnalyzer.pathShortest("A",'C'));
+            System.out.println("Output #9: "+CitiesAnalyzer.pathShortest("B",'B'));
+            System.out.println("Output #10: "+CitiesAnalyzer.pathWithBoundedDistance("C",30,'C').size());
 
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
 
 
     }
